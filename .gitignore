@@ -1,0 +1,9 @@
+BuildYourSlice.Domain.Logic/obj/
+BuildYourSlice/bin/
+BuildYourSlice/obj/
+BuildYourSlice.Domain.Logic/bin/
+BuildYourSlice.Domain.Contracts/obj/
+BuildYourSlice.DataAccess/obj/
+.vs/
+BuildYourSlice.Domain.Contracts/bin/
+BuildYourSlice.DataAccess.Contracts/obj/

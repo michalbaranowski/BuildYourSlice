@@ -1,0 +1,6 @@
+@BuildYourSlice_HostAddress = http://localhost:5127
+
+GET {{BuildYourSlice_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
