@@ -10,22 +10,25 @@ export interface Ingredient {
   id: number;
   src: string;
   name: string;
+  price: number;
 }
 
 function App() {
 
+  const basePrice : number = 15;
+
   const availableIngredients : Array<Ingredient> = [
-    {id: 1, name: "Sauce", src: sauceImage},
-    {id: 2, name: "Cheese", src: cheeseImage},
-    {id: 3, name: "Pepperoni", src: pepperoniImage},
+    {id: 1, name: "Sauce", src: sauceImage, price: 0.5},
+    {id: 2, name: "Cheese", src: cheeseImage, price: 2},
+    {id: 3, name: "Pepperoni", src: pepperoniImage, price: 3},
   ];
 
   const [selectedIngredients, setIngredients] = useState<Ingredient[]>([]);
 
-  const addIngredient = (src: string, name: string) => {
+  const addIngredient = (ingredient: Ingredient) => {
     setIngredients((prev) => [
       ...prev,
-      { id: prev.length, src, name },
+      ingredient,
     ]);
   };
 
@@ -38,6 +41,10 @@ function App() {
   return (
     <>
       <h1>Create your pizza</h1>
+      { selectedIngredients.length > 0 ?
+        (<p>Your pizza will cost: {(basePrice + selectedIngredients.reduce((sum, value) => sum + value.price, 0)).toFixed(2)} PLN</p>) :
+        (<p>Select ingredients to calculate price...</p>)
+      }
       <PizzaComponent selectedIngredients={selectedIngredients} />
 
       <div className="controls">

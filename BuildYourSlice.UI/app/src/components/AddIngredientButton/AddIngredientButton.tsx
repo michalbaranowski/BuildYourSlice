@@ -2,7 +2,7 @@ import { Ingredient } from "../../App";
 
 interface IngredientControlsProps {
     selectedIngredients: Array<Ingredient>;
-    onAddIngredient: (src: string, name: string) => void;
+    onAddIngredient: (ingredient: Ingredient) => void;
     onRemoveIngredient: (name: string) => void;
 
     ingredient: Ingredient;
@@ -16,7 +16,7 @@ export default function AddIngredientButton(props: IngredientControlsProps) {
            {
                 isIngredientAdded() === false ?
                 (
-                    <button onClick={() => props.onAddIngredient(props.ingredient.src, props.ingredient.name)}>
+                    <button onClick={() => props.onAddIngredient(props.ingredient)}>
                         Add {props.ingredient.name}
                     </button>
                 ) :
