@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import doughImage from './assets/dough.png'
 import sauceImage from './assets/sauce.png'
 import cheeseImage from './assets/cheese.png'
 import pepperoniImage from './assets/pepperoni.png'
 import './App.css'
-import AddIngredientButton from './components/AddIngredientButton/addIngredientButton'
+import AddIngredientButton from './components/AddIngredientButton/AddIngredientButton'
+import PizzaComponent from './components/PizzaComponent/PizzaComponent'
 
 export interface Ingredient {
   id: number;
@@ -38,19 +38,7 @@ function App() {
   return (
     <>
       <h1>Create your pizza</h1>
-
-      <div className="pizza">
-        <ul className="ingredients">
-          <li>
-            <img className="dough" src={doughImage} />
-          </li>
-          {selectedIngredients.map((ingredient) => (
-            <li key={ingredient.id} className="ingredient">
-              <img src={ingredient.src} alt={ingredient.name} />
-            </li>
-          ))}
-        </ul>
-      </div>
+      <PizzaComponent selectedIngredients={selectedIngredients} />
 
       <div className="controls">
         {
