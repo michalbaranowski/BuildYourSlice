@@ -15,6 +15,14 @@ builder.Services.AddSwaggerGen();
 var connectionString = Environment.GetEnvironmentVariable("BuildYourSliceConnection");
 builder.Services.AddDbContext<BuildYourSliceDbContext>(options => options.UseSqlServer(connectionString));
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5173");
+    });
+});
+
 builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
@@ -25,6 +33,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 

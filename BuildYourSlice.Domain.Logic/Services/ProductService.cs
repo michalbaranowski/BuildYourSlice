@@ -19,7 +19,8 @@ namespace BuildYourSlice.Domain.Logic.Services
             var entityToBeAdded = new Product()
             {
                 Name = product.Name,
-                Price = product.Price
+                Price = product.Price,
+                Image = Convert.FromBase64String(product.Image),
             };
 
             _context.Products.Add(entityToBeAdded);
@@ -29,8 +30,11 @@ namespace BuildYourSlice.Domain.Logic.Services
         public IList<ProductModel> GetAvailableProducts()
         {
             return _context.Products.Select(n => new ProductModel {
+                Id = n.Id,
                 Name = n.Name,
-                Price = n.Price
+                Price = n.Price,
+                Image = Convert.ToBase64String(n.Image),
+                IsBaseProduct = n.IsBaseProduct
             }).ToList();
         }
 
@@ -38,8 +42,11 @@ namespace BuildYourSlice.Domain.Logic.Services
         {
             return _context.Products.Where(n => n.Id == id).Select(n => new ProductModel
             {
+                Id = n.Id,
+                Name = n.Name,
                 Price = n.Price,
-                Name = n.Name
+                Image = Convert.ToBase64String(n.Image),
+                IsBaseProduct = n.IsBaseProduct
             }).First();
         }
     }

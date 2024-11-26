@@ -22,7 +22,7 @@ namespace BuildYourSlice.Api.Controllers
         }
 
         [HttpPost]
-        public void AddCourse(ProductModel model)
+        public void AddProduct(ProductModel model)
         {
             _productService.AddProduct(model);
         }

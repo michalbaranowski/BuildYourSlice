@@ -3,6 +3,7 @@ using BuildYourSlice.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildYourSlice.DataAccess.Migrations
 {
     [DbContext(typeof(BuildYourSliceDbContext))]
-    partial class BuildYourSliceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241126105456_AddImageAndBaseProductFlagToProduct")]
+    partial class AddImageAndBaseProductFlagToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
