@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import AddIngredientButton from './components/AddIngredientButton/AddIngredientButton'
+
+import Header from './components/Header/Header'
 import PizzaComponent from './components/PizzaComponent/PizzaComponent'
-import axios from 'axios'
-import { Product } from './data/models/Products'
+import AddIngredientButton from './components/AddIngredientButton/AddIngredientButton'
+
+import { ApiService } from './data/services/ApiService'
+
 
 export interface Ingredient {
   id: number;
@@ -21,8 +24,7 @@ function App() {
   const [selectedIngredients, setIngredients] = useState<Ingredient[]>([]);
 
   useEffect(() => {
-    axios.get<Product[]>('https://localhost:7078/api/Products').then(response => {
-
+    ApiService.GetProducts().then(response => {
       const baseProduct = response.data.filter(x => x.isBaseProduct === true)[0];
       setBasePrice(baseProduct.price);
       setDoughSrc(`data:image/png;base64,${baseProduct.image}`);
@@ -54,11 +56,7 @@ function App() {
 
   return (
     <>
-      <h1>Create your pizza</h1>
-      { selectedIngredients.length > 0 ?
-        (<p>Your pizza will cost: {(basePrice + selectedIngredients.reduce((sum, value) => sum + value.price, 0)).toFixed(2)} PLN</p>) :
-        (<p>Select ingredients to calculate price...</p>)
-      }
+      <Header basePrice={basePrice} selectedIngredients={selectedIngredients}/>
       <PizzaComponent selectedIngredients={selectedIngredients} doughSrc={doughSrc} />
 
       <div className="controls">
