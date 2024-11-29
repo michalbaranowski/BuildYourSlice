@@ -3,7 +3,7 @@ import './App.css'
 
 import Header from './components/Header/Header'
 import PizzaComponent from './components/PizzaComponent/PizzaComponent'
-import AddIngredientButton from './components/AddIngredientButton/AddIngredientButton'
+import IngredientControlButton from './components/IngredientControlButton/IngredientControlButton'
 
 import { ApiService } from './data/services/ApiService'
 
@@ -62,7 +62,7 @@ function App() {
       <div className="controls">
         {
           availableIngredients.map((ingredient) => (
-            <AddIngredientButton
+            <IngredientControlButton
               key={ingredient.id}
               ingredient={ingredient}
               selectedIngredients={selectedIngredients}
